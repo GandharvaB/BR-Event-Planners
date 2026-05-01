@@ -1,0 +1,314 @@
+/* CSS Custom Properties for Spotlight */
+@property --spotlight-angle {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --spotlight-distance {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Liquid Glass Utilities */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.liquid-glass-dark {
+  background: rgba(26, 26, 26, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Transitions */
+.transition-smooth {
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Text Selection */
+::selection {
+  background-color: #B8956A;
+  color: #F9F9F7;
+}
+
+::-moz-selection {
+  background-color: #B8956A;
+  color: #F9F9F7;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F9F9F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B8956A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A7A56;
+}
+
+/* Refined Border */
+.refined-border {
+  border-width: 0.5px;
+  border-color: rgba(26, 26, 26, 0.08);
+}
+
+/* Swiss Grid Pattern */
+.swiss-grid {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(26, 26, 26, 0.02), rgba(26, 26, 26, 0.02) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, rgba(26, 26, 26, 0.02), rgba(26, 26, 26, 0.02) 1px, transparent 1px, transparent 40px);
+}
+
+/* Services Grid - Related Element Animations */
+.service-item {
+  position: relative;
+  padding: 0.75rem;
+}
+
+.service-card {
+  position: relative;
+  height: 100%;
+  padding: 3rem;
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.service-bg {
+  content: '';
+  position: absolute;
+  inset: 0.5rem;
+  background: linear-gradient(135deg, rgba(184, 149, 106, 0.05), transparent);
+  border-radius: 0.125rem;
+  opacity: 0;
+  scale: 0.5;
+  transition: opacity 0.3s cubic-bezier(0.86, 0, 0.31, 1),
+              scale 0.3s cubic-bezier(0.86, 0, 0.31, 1);
+  will-change: opacity, scale;
+}
+
+.service-item:hover .service-bg {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 0.6s cubic-bezier(0.35, 0.35, 0, 1),
+              scale 0.6s cubic-bezier(0.35, 0.35, 0, 1);
+}
+
+.service-content {
+  position: relative;
+  z-index: 10;
+}
+
+.service-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 2rem;
+  color: #B8956A;
+  stroke-width: 1.5;
+  opacity: 1;
+  scale: 1;
+  transition: opacity 0.6s cubic-bezier(0.35, 0.35, 0, 1),
+              scale 0.6s cubic-bezier(0.35, 0.35, 0, 1);
+  will-change: opacity, scale;
+}
+
+@media (min-width: 768px) {
+  .service-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  /* When ANY service item is hovered, scale down ALL icons */
+  .services-grid:has(.service-item:hover) .service-icon {
+    scale: 0.5;
+    opacity: 0.7;
+  }
+
+  /* The hovered item's icon scales even smaller and fades */
+  .services-grid .service-item:hover .service-icon {
+    scale: 0.25 !important;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.86, 0, 0.31, 1),
+                scale 0.3s cubic-bezier(0.86, 0, 0.31, 1);
+  }
+
+  /* When ANY service item is hovered, dim ALL titles */
+  .services-grid:has(.service-item:hover) .service-item h3 {
+    color: #6B6B6B;
+  }
+
+  /* The hovered item's title stays bright */
+  .services-grid .service-item:hover h3 {
+    color: #1A1A1A !important;
+  }
+}
+
+.service-description {
+  color: rgba(26, 26, 26, 0.6);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  font-size: 1.125rem;
+  transition: color 0.5s ease;
+}
+
+@media (min-width: 1024px) {
+  .service-card {
+    padding: 4rem;
+  }
+}
+
+/* Hero Spotlight Effect */
+.hero-spotlight {
+  --spotlight-angle: 0;
+  --spotlight-distance: 0;
+}
+
+.spotlight-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(184, 149, 106, 0.15) 0%,
+    rgba(184, 149, 106, 0.08) 30%,
+    rgba(184, 149, 106, 0.02) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(
+    calc(-50% + sin(var(--spotlight-angle-deg, 0rad)) * var(--spotlight-distance, 0) * 0.3px),
+    calc(-50% + cos(var(--spotlight-angle-deg, 0rad)) * var(--spotlight-distance, 0) * 0.3px)
+  );
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.35, 0.35, 0, 1);
+  will-change: transform;
+}
+
+.hero-spotlight:hover .spotlight-orb {
+  opacity: 1;
+}
+
+/* Interactive text elements with spotlight */
+.hero-spotlight h1 {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.35, 0.35, 0, 1);
+}
+
+@media (min-width: 1024px) {
+  .hero-spotlight:hover h1 {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 200) * -0.02px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 200) * 0.02px)
+    );
+  }
+
+  .hero-spotlight:hover .hero-subtext {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 300) * -0.01px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 300) * 0.01px)
+    );
+  }
+
+  .hero-spotlight:hover .hero-buttons {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 250) * -0.015px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 250) * 0.015px)
+    );
+  }
+
+  .hero-spotlight .hero-accent {
+    will-change: transform;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.35, 0.35, 0, 1);
+  }
+
+  .hero-spotlight:hover .hero-accent {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 400) * 0.05px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 400) * -0.05px)
+    ) scale(1.02);
+  }
+
+  /* Spotlight particles */
+  .spotlight-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    background: radial-gradient(
+      circle,
+      rgba(184, 149, 106, 0.4) 0%,
+      rgba(184, 149, 106, 0.1) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.35, 0.35, 0, 1);
+    will-change: transform, opacity;
+  }
+
+  .hero-spotlight:hover .spotlight-particle {
+    opacity: 1;
+  }
+
+  .spotlight-particle-1 {
+    width: 120px;
+    height: 120px;
+    left: 20%;
+    top: 30%;
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 600) * -0.15px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 600) * 0.15px)
+    );
+  }
+
+  .spotlight-particle-2 {
+    width: 80px;
+    height: 80px;
+    right: 25%;
+    top: 45%;
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 500) * 0.12px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 500) * -0.12px)
+    );
+  }
+
+  .spotlight-particle-3 {
+    width: 100px;
+    height: 100px;
+    left: 60%;
+    bottom: 35%;
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 550) * 0.18px),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * min(var(--spotlight-distance, 0), 550) * 0.18px)
+    );
+  }
+
+  /* Spotlight indicator */
+  .spotlight-indicator {
+    opacity: 0.4;
+    transition: opacity 0.5s cubic-bezier(0.35, 0.35, 0, 1);
+  }
+
+  .hero-spotlight:hover .spotlight-indicator {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,102 @@
+.character-wrap {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+.character-wrap svg {
+  grid-area: 1 / 1;
+  height: auto;
+  aspect-ratio: 1/1;
+  position: relative;
+}
+
+svg.body,
+svg.face {
+  scale: 1 1;
+  transform: skewX(0deg);
+  animation: cartoon-bounce 1.2s infinite ease-in-out;
+  transform-origin: 50% 100%;
+}
+svg.body {
+  animation-delay: -0.015s;
+}
+
+.eyes-wraper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1;
+
+  transform: skewX(0deg);
+  animation: cartoon-bounce 1.2s infinite ease-in-out;
+  transform-origin: 50% 100%;
+  animation-delay: -0.0075s;
+}
+.eyes {
+  width: 34%;
+  height: 24%;
+  margin: 18% 35% 0 31%;
+  display: flex;
+  justify-content: space-between;
+}
+.eye {
+  width: 40%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 0.2rem solid #000000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+.eye:first-child {
+  margin-top: -5%;
+}
+.eye::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-image: conic-gradient(from 5.5rad, #000000 300deg, #ffffff 300deg);
+  will-change: transform;
+}
+
+@keyframes cartoon-bounce {
+  0% {
+    scale: 1 1;
+    transform: skewX(0deg);
+  }
+  25% {
+    scale: 1 0.95;
+  }
+  50% {
+    scale: 1 1;
+    transform: skewX(2deg);
+  }
+  75% {
+    scale: 1 0.95;
+  }
+  100% {
+    scale: 1 1;
+    transform: skewX(0deg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .eye {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * max(min(var(--spotlight-distance, 0), 800), 0) * -0.0075%),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * max(min(var(--spotlight-distance, 0), 600), 0) * 0.01%)
+    );
+  }
+  .eye::after {
+    transform: translate(
+      calc(sin(var(--spotlight-angle-deg, 0rad)) * max(min(var(--spotlight-distance, 0), 800), 0) * -0.075%),
+      calc(cos(var(--spotlight-angle-deg, 0rad)) * max(min(var(--spotlight-distance, 0), 600), 0) * 0.1%)
+    );
+  }
+}
